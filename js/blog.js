@@ -123,6 +123,9 @@
             document.getElementById('post-title').textContent = post.title;
             document.getElementById('article-title').textContent = post.title;
 
+            // Update SEO meta tags
+            SEOManager.updatePostMeta(post);
+
             const date = new Date(post.date);
             const formattedDate = date.toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -365,6 +368,236 @@
         }
     };
 
+    // SEO management
+    const SEOManager = {
+        siteUrl: 'https://dongju93.github.io/blog',
+        siteName: "dongju93's Blog",
+        author: 'dongju93',
+        defaultImage: null, // Add your default OG image URL here
+
+        /**
+         * Update meta tags for post pages
+         * @param {Object} post - Post object from posts.json
+         */
+        updatePostMeta(post) {
+            if (!post) return;
+
+            const url = `${this.siteUrl}/post.html?id=${post.id}`;
+            const description = post.excerpt || '';
+            const keywords = post.tags ? post.tags.join(', ') : '';
+
+            // Update basic meta tags
+            this.updateMetaTag('description', description);
+            this.updateMetaTag('keywords', keywords);
+
+            // Update Open Graph tags
+            this.updateMetaTag('og:type', 'article', 'property');
+            this.updateMetaTag('og:title', post.title, 'property');
+            this.updateMetaTag('og:description', description, 'property');
+            this.updateMetaTag('og:url', url, 'property');
+            this.updateMetaTag('og:site_name', this.siteName, 'property');
+
+            if (this.defaultImage) {
+                this.updateMetaTag('og:image', this.defaultImage, 'property');
+            }
+
+            // Update Twitter Card tags
+            this.updateMetaTag('twitter:card', 'summary_large_image', 'name');
+            this.updateMetaTag('twitter:title', post.title, 'name');
+            this.updateMetaTag('twitter:description', description, 'name');
+
+            if (this.defaultImage) {
+                this.updateMetaTag('twitter:image', this.defaultImage, 'name');
+            }
+
+            // Update article-specific tags
+            this.updateMetaTag('article:published_time', post.date, 'property');
+            this.updateMetaTag('article:author', this.author, 'property');
+
+            if (post.tags) {
+                // Remove existing article:tag meta tags
+                const existingTags = document.querySelectorAll('meta[property="article:tag"]');
+                existingTags.forEach(tag => tag.remove());
+
+                // Add new article:tag meta tags
+                post.tags.forEach(tag => {
+                    this.createMetaTag('article:tag', tag, 'property');
+                });
+            }
+
+            // Update canonical URL
+            this.updateCanonicalURL(url);
+
+            // Inject structured data
+            this.injectStructuredData(post);
+        },
+
+        /**
+         * Update homepage meta tags
+         */
+        updateHomepageMeta() {
+            const url = this.siteUrl;
+            const description = 'A personal blog about software engineering, AI, cloud technologies, and modern development practices. Sharing insights on FastAPI, AI frameworks, and technical explorations.';
+
+            // Update basic meta tags
+            this.updateMetaTag('description', description);
+
+            // Update Open Graph tags
+            this.updateMetaTag('og:type', 'website', 'property');
+            this.updateMetaTag('og:title', this.siteName, 'property');
+            this.updateMetaTag('og:description', description, 'property');
+            this.updateMetaTag('og:url', url, 'property');
+            this.updateMetaTag('og:site_name', this.siteName, 'property');
+
+            if (this.defaultImage) {
+                this.updateMetaTag('og:image', this.defaultImage, 'property');
+            }
+
+            // Update Twitter Card tags
+            this.updateMetaTag('twitter:card', 'summary', 'name');
+            this.updateMetaTag('twitter:title', this.siteName, 'name');
+            this.updateMetaTag('twitter:description', description, 'name');
+
+            // Update canonical URL
+            this.updateCanonicalURL(url);
+
+            // Inject website structured data
+            this.injectWebsiteStructuredData();
+        },
+
+        /**
+         * Update or create a meta tag
+         * @param {string} key - Meta tag attribute value (name or property value)
+         * @param {string} content - Content value
+         * @param {string} attr - Attribute type ('name' or 'property')
+         */
+        updateMetaTag(key, content, attr = 'name') {
+            let meta = document.querySelector(`meta[${attr}="${key}"]`);
+
+            if (!meta) {
+                meta = this.createMetaTag(key, content, attr);
+            } else {
+                meta.setAttribute('content', content);
+            }
+        },
+
+        /**
+         * Create a new meta tag
+         * @param {string} key - Meta tag attribute value
+         * @param {string} content - Content value
+         * @param {string} attr - Attribute type ('name' or 'property')
+         */
+        createMetaTag(key, content, attr = 'name') {
+            const meta = document.createElement('meta');
+            meta.setAttribute(attr, key);
+            meta.setAttribute('content', content);
+            document.head.appendChild(meta);
+            return meta;
+        },
+
+        /**
+         * Update canonical URL
+         * @param {string} url - Canonical URL
+         */
+        updateCanonicalURL(url) {
+            let link = document.querySelector('link[rel="canonical"]');
+
+            if (!link) {
+                link = document.createElement('link');
+                link.setAttribute('rel', 'canonical');
+                document.head.appendChild(link);
+            }
+
+            link.setAttribute('href', url);
+        },
+
+        /**
+         * Inject JSON-LD structured data for blog posts
+         * @param {Object} post - Post object
+         */
+        injectStructuredData(post) {
+            // Remove existing structured data
+            const existing = document.getElementById('structured-data');
+            if (existing) existing.remove();
+
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": post.title,
+                "description": post.excerpt || '',
+                "datePublished": post.date,
+                "dateModified": post.date,
+                "author": {
+                    "@type": "Person",
+                    "name": this.author,
+                    "url": `https://github.com/${this.author}`
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": this.author
+                },
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": `${this.siteUrl}/post.html?id=${post.id}`
+                },
+                "url": `${this.siteUrl}/post.html?id=${post.id}`
+            };
+
+            // Add keywords if available
+            if (post.tags && post.tags.length > 0) {
+                structuredData.keywords = post.tags.join(', ');
+            }
+
+            // Add image if available
+            if (this.defaultImage) {
+                structuredData.image = this.defaultImage;
+            }
+
+            // Add word count / time required if available
+            if (post.readingTime) {
+                structuredData.timeRequired = post.readingTime;
+            }
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.id = 'structured-data';
+            script.textContent = JSON.stringify(structuredData, null, 2);
+            document.head.appendChild(script);
+        },
+
+        /**
+         * Inject JSON-LD structured data for website/blog
+         */
+        injectWebsiteStructuredData() {
+            // Remove existing structured data
+            const existing = document.getElementById('structured-data');
+            if (existing) existing.remove();
+
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "Blog",
+                "name": this.siteName,
+                "description": "A personal blog about software engineering, AI, cloud technologies, and modern development practices.",
+                "url": this.siteUrl,
+                "author": {
+                    "@type": "Person",
+                    "name": this.author,
+                    "url": `https://github.com/${this.author}`
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": this.author
+                }
+            };
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.id = 'structured-data';
+            script.textContent = JSON.stringify(structuredData, null, 2);
+            document.head.appendChild(script);
+        }
+    };
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
@@ -377,5 +610,11 @@
         PostManager.init();
         BackToTopManager.init();
         CopyManager.init();
+
+        // Initialize SEO based on page type
+        const isPostPage = document.getElementById('post-content') !== null;
+        if (!isPostPage) {
+            SEOManager.updateHomepageMeta();
+        }
     }
 })();

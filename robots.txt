@@ -1,0 +1,10 @@
+# robots.txt for dongju93's Blog
+# Allow all search engines to crawl and index all content
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://dongju93.github.io/blog/sitemap.xml
+
+# Crawl-delay: None (allow unrestricted crawling)
