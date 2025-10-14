@@ -119,7 +119,7 @@
             this.currentPost = post;
 
             // Update page metadata
-            document.title = `${post.title} | Dong-ju's Blog`;
+            document.title = `${post.title} | dongju93's Blog`;
             document.getElementById('post-title').textContent = post.title;
             document.getElementById('article-title').textContent = post.title;
 
