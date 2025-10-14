@@ -34,6 +34,8 @@
     // Post management
     const PostManager = {
         postsData: null,
+        currentMarkdown: null,
+        currentPost: null,
 
         async init() {
             await this.loadPosts();
@@ -113,6 +115,9 @@
                 return;
             }
 
+            // Store current post for copy functionality
+            this.currentPost = post;
+
             // Update page metadata
             document.title = `${post.title} | Dong-ju's Blog`;
             document.getElementById('post-title').textContent = post.title;
@@ -136,6 +141,9 @@
                 if (!response.ok) throw new Error('Failed to load post content');
 
                 const markdown = await response.text();
+
+                // Store the markdown for copy functionality
+                this.currentMarkdown = markdown;
 
                 // Configure marked to generate heading IDs with custom renderer
                 const renderer = new marked.Renderer();
@@ -310,6 +318,53 @@
         }
     };
 
+    // Copy Markdown functionality
+    const CopyManager = {
+        init() {
+            this.button = document.getElementById('copy-markdown-btn');
+            if (!this.button) return;
+
+            this.buttonText = this.button.querySelector('.copy-btn-text');
+            this.originalText = this.buttonText.textContent;
+            this.bindEvents();
+        },
+
+        bindEvents() {
+            this.button.addEventListener('click', () => this.copyMarkdown());
+        },
+
+        async copyMarkdown() {
+            if (!PostManager.currentMarkdown || !PostManager.currentPost) {
+                this.showFeedback('No content to copy', false);
+                return;
+            }
+
+            try {
+                // Prepend title as H1 to the markdown content
+                const title = PostManager.currentPost.title;
+                const markdownWithTitle = `# ${title}\n\n${PostManager.currentMarkdown}`;
+
+                await navigator.clipboard.writeText(markdownWithTitle);
+                this.showFeedback('Copied!', true);
+            } catch (error) {
+                console.error('Failed to copy:', error);
+                this.showFeedback('Failed to copy', false);
+            }
+        },
+
+        showFeedback(message, success) {
+            // Update button text
+            this.buttonText.textContent = message;
+            this.button.classList.add(success ? 'success' : 'error');
+
+            // Reset after 2 seconds
+            setTimeout(() => {
+                this.buttonText.textContent = this.originalText;
+                this.button.classList.remove('success', 'error');
+            }, 2000);
+        }
+    };
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
@@ -321,5 +376,6 @@
         ThemeManager.init();
         PostManager.init();
         BackToTopManager.init();
+        CopyManager.init();
     }
 })();

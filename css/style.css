@@ -312,6 +312,7 @@ a:hover {
 
 .post-header {
     margin-bottom: var(--spacing-xl);
+    position: relative;
 }
 
 .back-link {
@@ -333,11 +334,72 @@ a:hover {
 
 .post-meta {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: var(--spacing-md);
     color: var(--text-secondary);
     font-size: 0.875rem;
     padding-bottom: var(--spacing-lg);
     border-bottom: 1px solid var(--border);
+}
+
+.post-meta-left {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+/* Copy as Markdown Button */
+.copy-markdown-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: var(--spacing-xs) var(--spacing-md);
+    cursor: pointer;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.copy-markdown-btn:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.copy-markdown-btn:active {
+    transform: scale(0.98);
+}
+
+.copy-markdown-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.copy-markdown-btn.success {
+    background-color: #10b981;
+    border-color: #10b981;
+    color: white;
+}
+
+.copy-markdown-btn.error {
+    background-color: #ef4444;
+    border-color: #ef4444;
+    color: white;
+}
+
+.copy-markdown-btn.success:hover,
+.copy-markdown-btn.error:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--border);
+    color: var(--text-primary);
 }
 
 .post-content {
@@ -550,10 +612,24 @@ a:hover {
         gap: var(--spacing-sm);
     }
 
-    .post-meta,
     .post-card-meta {
         flex-direction: column;
         gap: var(--spacing-xs);
+    }
+
+    .post-meta {
+        flex-wrap: wrap;
+    }
+
+    .post-meta-left {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        align-items: flex-start;
+    }
+
+    .copy-markdown-btn {
+        font-size: 0.8rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 }
 
@@ -585,6 +661,22 @@ a:hover {
     .back-to-top svg {
         width: 20px;
         height: 20px;
+    }
+
+    .copy-markdown-btn .copy-btn-text {
+        display: none;
+    }
+
+    .copy-markdown-btn {
+        padding: var(--spacing-xs);
+        width: 36px;
+        height: 36px;
+        justify-content: center;
+    }
+
+    .copy-markdown-btn svg {
+        width: 16px;
+        height: 16px;
     }
 }
 
