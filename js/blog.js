@@ -86,7 +86,7 @@
             return `
                 <article class="post-card">
                     <h3 class="post-card-title">
-                        <a href="post.html?id=${post.id}">${post.title}</a>
+                        <a href="/blog/post.html?id=${post.id}">${post.title}</a>
                     </h3>
                     <div class="post-card-meta">
                         <time datetime="${post.date}">${formattedDate}</time>
