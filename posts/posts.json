@@ -1,0 +1,11 @@
+[
+  {
+    "id": "ai-agent-framework-guide",
+    "title": "Production-Ready AI Agent Frameworks: An In-Depth Analysis of 7 Major Frameworks",
+    "date": "2025-10-15",
+    "file": "ai_agent_framework_guide.md",
+    "excerpt": "AI가 단순 정보 생성을 넘어 자율적으로 복잡한 작업을 수행하는 '에이전트' 시대로 진입했습니다. 본 문서는 CrewAI, Microsoft Agent Framework, OpenAI Agents SDK, Google ADK, Claude Agent SDK, Pydantic AI, LangGraph 등 7가지 주요 AI 에이전트 프레임워크를 심층 비교 분석하여, 당신의 프로젝트에 맞는 최적의 도구를 선택할 수 있도록 돕습니다.",
+    "tags": ["AI", "AI Agent", "Framework", "CrewAI", "Microsoft Agent Framework", "OpenAI", "Google ADK", "Claude", "Pydantic AI", "LangGraph"],
+    "readingTime": "22 min read"
+  }
+]
