@@ -1,10 +1,27 @@
 [
   {
+    "id": "python-3-15-pep-preview",
+    "title": "Python 3.15 Preview and CPython Evolution: PEP 799, PEP 782, and the Era of Free-threading",
+    "date": "2025-10-16",
+    "file": "py_3_15_pep.md",
+    "excerpt": "From Python 3.13 to 3.15, CPython is undergoing innovative changes to overcome the limitations of performance and concurrency. Experimental features such as GIL removal (Free-threading), JIT compiler, and sub-interpreters are becoming a reality, PEP 799 systematizes profiling tools, and PEP 782 strengthens the safety of the C API. Let's take a look at Python's journey of evolving into a high-performance language.",
+    "tags": [
+      "Python",
+      "CPython",
+      "PEP",
+      "Performance",
+      "Free-threading",
+      "JIT",
+      "Profiling"
+    ],
+    "readingTime": "7 min read"
+  },
+  {
     "id": "fastapi-cloud-expectations",
     "title": "Expectations for FastAPI Cloud",
     "date": "2025-10-16",
     "file": "fastapi_cloud_expectations.md",
-    "excerpt": "FastAPI 애플리케이션 배포를 획기적으로 단순화할 'FastAPI Cloud'가 등장했습니다. 공식 웹사이트 정보를 바탕으로, 개발자가 코드에만 집중하고 클라우드 인프라 관리는 플랫폼에 맡기는 'You code. We cloud.' 비전과 '제로 설정, 제로 불확실성, 제로 좌절' 철학이 가져올 변화에 대한 기대감을 정리합니다.",
+    "excerpt": "'FastAPI Cloud' has emerged to dramatically simplify FastAPI application deployment. Based on the official website information, we summarize the expectations for the changes that will be brought by the 'You code. We cloud.' vision and the 'zero configuration, zero uncertainty, zero frustration' philosophy, where developers focus only on code and leave cloud infrastructure management to the platform.",
     "tags": ["FastAPI", "Cloud", "PaaS", "Deployment", "DX"],
     "readingTime": "4 min read"
   },
@@ -13,7 +30,7 @@
     "title": "Production-Ready AI Agent Frameworks: An In-Depth Analysis of 7 Major Frameworks",
     "date": "2025-10-15",
     "file": "ai_agent_framework_guide.md",
-    "excerpt": "AI가 단순 정보 생성을 넘어 자율적으로 복잡한 작업을 수행하는 '에이전트' 시대로 진입했습니다. 이 글은 CrewAI, Microsoft Agent Framework, OpenAI Agents SDK, Google ADK, Claude Agent SDK, Pydantic AI, LangGraph 총 7가지 주요 AI 에이전트 프레임워크를 심층 비교 분석합니다.",
+    "excerpt": "We have entered the era of 'agents' where AI goes beyond simple information generation to autonomously perform complex tasks. This article provides an in-depth comparative analysis of seven major AI agent frameworks: CrewAI, Microsoft Agent Framework, OpenAI Agents SDK, Google ADK, Claude Agent SDK, Pydantic AI, and LangGraph.",
     "tags": [
       "AI",
       "AI Agent",
