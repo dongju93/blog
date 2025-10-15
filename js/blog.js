@@ -88,7 +88,7 @@
             return `
                 <article class="post-card">
                     <h3 class="post-card-title">
-                        <a href="/blog/post.html?id=${post.id}">${post.title}</a>
+                        <a href="/blog/post.html?id=${post.id}" data-umami-event="post-click" data-umami-event-post="${post.id}" data-umami-event-title="${post.title}">${post.title}</a>
                     </h3>
                     <div class="post-card-meta">
                         <time datetime="${post.date}">${formattedDate}</time>
@@ -348,6 +348,15 @@
                 const markdownWithTitle = `# ${title}\n\n${PostManager.currentMarkdown}`;
 
                 await navigator.clipboard.writeText(markdownWithTitle);
+
+                // Track copy event with Umami
+                if (window.umami) {
+                    window.umami.track('copy-markdown', {
+                        post: PostManager.currentPost.id,
+                        title: PostManager.currentPost.title
+                    });
+                }
+
                 this.showFeedback('Copied!', true);
             } catch (error) {
                 console.error('Failed to copy:', error);
