@@ -2,7 +2,7 @@
   {
     "id": "python-3-15-pep-preview",
     "title": "Python 3.15 Preview and CPython Evolution: PEP 799, PEP 782, and the Era of Free-threading",
-    "date": "🗓️ 2025-10-16",
+    "date": "2025-10-16",
     "file": "py_3_15_pep.md",
     "excerpt": "From Python 3.13 to 3.15, CPython is undergoing innovative changes to overcome the limitations of performance and concurrency. Experimental features such as GIL removal (Free-threading), JIT compiler, and sub-interpreters are becoming a reality, PEP 799 systematizes profiling tools, and PEP 782 strengthens the safety of the C API. Let's take a look at Python's journey of evolving into a high-performance language.",
     "tags": [
@@ -19,7 +19,7 @@
   {
     "id": "fastapi-cloud-expectations",
     "title": "Expectations for FastAPI Cloud",
-    "date": "🗓️ 2025-10-16",
+    "date": "2025-10-16",
     "file": "fastapi_cloud_expectations.md",
     "excerpt": "'FastAPI Cloud' has emerged to dramatically simplify FastAPI application deployment. Based on the official website information, we summarize the expectations for the changes that will be brought by the 'You code. We cloud.' vision and the 'zero configuration, zero uncertainty, zero frustration' philosophy, where developers focus only on code and leave cloud infrastructure management to the platform.",
     "tags": ["FastAPI", "Cloud", "PaaS", "Deployment", "DX"],
@@ -28,7 +28,7 @@
   {
     "id": "ai-agent-framework-guide",
     "title": "Production-Ready AI Agent Frameworks: An In-Depth Analysis of 7 Major Frameworks",
-    "date": "🗓️ 2025-10-15",
+    "date": "2025-10-15",
     "file": "ai_agent_framework_guide.md",
     "excerpt": "We have entered the era of 'agents' where AI goes beyond simple information generation to autonomously perform complex tasks. This article provides an in-depth comparative analysis of seven major AI agent frameworks: CrewAI, Microsoft Agent Framework, OpenAI Agents SDK, Google ADK, Claude Agent SDK, Pydantic AI, and LangGraph.",
     "tags": [
