@@ -1,5 +1,22 @@
 [
   {
+    "id": "python-api-frameworks-hidden-gems",
+    "title": "Hidden Gems of Python API Frameworks: An In-Depth Analysis of Granian, Falcon, and Tornado",
+    "date": "2025-10-17",
+    "file": "py_api_frameworks.md",
+    "excerpt": "Are you looking for solutions optimized for extreme performance and specific architectures beyond FastAPI, Flask, and DRF? This article delves deep into the philosophy, strengths, and architecture of hidden gem-like frameworks Granian, Falcon, and Tornado that have been overshadowed by the mainstream.",
+    "tags": [
+      "Python",
+      "HTTP",
+      "API",
+      "Framework",
+      "Granian",
+      "Falcon",
+      "Tornado"
+    ],
+    "readingTime": "📖 18 min read"
+  },
+  {
     "id": "python-3-15-pep-preview",
     "title": "Python 3.15 Preview and CPython Evolution: PEP 799, PEP 782, and the Era of Free-threading",
     "date": "2025-10-16",
