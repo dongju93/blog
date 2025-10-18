@@ -1,5 +1,14 @@
 [
   {
+    "id": "postgresql-architecture-overview",
+    "title": "A High-Level Overview of PostgreSQL's Architecture",
+    "date": "2025-10-18",
+    "file": "postgresql_overview.md",
+    "excerpt": "Get a high-level overview of PostgreSQL's internal workings. This post covers key architectural concepts, data storage models, and the mechanisms that ensure data integrity and performance, making it a reliable choice for applications of all sizes.",
+    "tags": ["PostgreSQL", "Database", "RDBMS", "MVCC", "WAL", "Architecture"],
+    "readingTime": "📖 9 min read"
+  },
+  {
     "id": "python-api-frameworks-hidden-gems",
     "title": "Hidden Gems of Python API Frameworks: An In-Depth Analysis of Granian, Falcon and Tornado",
     "date": "2025-10-17",
