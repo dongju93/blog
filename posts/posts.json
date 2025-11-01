@@ -1,5 +1,21 @@
 [
   {
+    "id": "tcp-bbr-deep-dive",
+    "title": "TCP BBR: From v1 to v3 and its Implementation in Linux",
+    "date": "2025-11-01",
+    "file": "tcp_bbr.md",
+    "excerpt": "TCP BBR (Bottleneck Bandwidth and Round-trip propagation time) is an innovative TCP congestion control algorithm from Google that takes a fundamentally different approach from traditional loss-based algorithms. This article provides a deep dive into the core principles of BBR, its evolution from v1 to v3, and provides a detailed guide on how to apply it on Linux systems, including its advantages and disadvantages.",
+    "tags": [
+      "TCP",
+      "BBR",
+      "Congestion Control",
+      "Networking",
+      "Linux",
+      "Performance"
+    ],
+    "readingTime": "📖 18 min read"
+  },
+  {
     "id": "postgresql-architecture-overview",
     "title": "A High-Level Overview of PostgreSQL's Architecture",
     "date": "2025-10-18",
