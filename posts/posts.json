@@ -1,5 +1,21 @@
 [
   {
+    "id": "peter-steinberger-dev-philosophy",
+    "title": "Peter Steinberger의 개발 철학으로 알아보는 미래 제품 개발의 통찰",
+    "date": "2026-03-02",
+    "file": "peter_steinberger_dev_philosophy.md",
+    "excerpt": "PSPDFKit에서 OpenClaw까지, 13년간의 여정에서 드러나는 Peter Steinberger의 6가지 핵심 개발 철학을 분석합니다. 부트스트랩 정신, DX 중심 설계, AI 레버리지, 오픈소스 전략, 반복 실험, 데이터 주권이 미래 제품 개발에 던지는 통찰을 살펴봅니다.",
+    "tags": [
+      "AI",
+      "Product Development",
+      "Open Source",
+      "Developer Experience",
+      "AI Agent",
+      "Startup"
+    ],
+    "readingTime": "📖 10 min read"
+  },
+  {
     "id": "tcp-bbr-deep-dive",
     "title": "TCP BBR: From v1 to v3 and its Implementation in Linux",
     "date": "2025-11-01",
